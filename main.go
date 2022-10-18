@@ -1,13 +1,17 @@
 package main
 
 import (
-	"kubemanager/config"
+	"kubemanager/LoadFiles"
 	"kubemanager/controller"
 	"kubemanager/middle"
 	"kubemanager/service"
 
 	"github.com/gin-gonic/gin"
 )
+
+func init() {
+	LoadFiles.SetFlags()
+}
 
 func main() {
 	service.K8s.Init()
@@ -18,5 +22,5 @@ func main() {
 
 	controller.Router.InitApiRouter(r)
 
-	r.Run(config.ListenAddr)
+	r.Run(LoadFiles.ReadAddress())
 }

@@ -1,7 +1,7 @@
 package service
 
 import (
-	"kubemanager/config"
+	"kubemanager/LoadFiles"
 
 	"github.com/wonderivan/logger"
 	"k8s.io/client-go/kubernetes"
@@ -15,10 +15,9 @@ type k8s struct {
 }
 
 func (k *k8s) Init() {
-	conf, err := clientcmd.BuildConfigFromFlags("", config.Kubeconfig)
+	conf, err := clientcmd.BuildConfigFromFlags("", LoadFiles.ReadKubeConfigFile())
 	if err != nil {
-
-		panic("获取k8s配置失败" + err.Error())
+		panic(err)
 	}
 
 	clientSet, err := kubernetes.NewForConfig(conf)

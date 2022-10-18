@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
-	"kubemanager/config"
+	"kubemanager/LoadFiles"
 
 	"github.com/wonderivan/logger"
 
@@ -100,7 +100,7 @@ func (p *pod) GetPodContainers(podName, namespace string) (containers []string, 
 }
 
 func (p *pod) GetPodLog(containerName, podName, namespace string) (log string, err error) {
-	lineLimit := int64(config.PodLogTailLines)
+	lineLimit := int64(LoadFiles.ReadPodLogTailLines())
 	option := &corev1.PodLogOptions{
 		Container: containerName,
 		TailLines: &lineLimit,

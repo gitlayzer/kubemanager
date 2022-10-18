@@ -2,7 +2,7 @@ package service
 
 import (
 	"errors"
-	"kubemanager/config"
+	"kubemanager/LoadFiles"
 
 	"github.com/wonderivan/logger"
 )
@@ -12,7 +12,7 @@ var Login login
 type login struct{}
 
 func (l *login) Auth(username, password string) (err error) {
-	if username == config.AdminUser && password == config.AdminPwd {
+	if username == LoadFiles.ReadAdmin() && password == LoadFiles.ReadPassword() {
 		return nil
 	} else {
 		logger.Error("登录失败, 用户名或密码错误")
