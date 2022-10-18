@@ -1,10 +1,21 @@
 # kubemanager-api
 这是kubemanager的后端API程序，完全由Go语言编写，目前还在开发中，部分功能还不太完善，可以拿走二次开发。
 
-我们需要使用它的话可能需要注意如下几点：
+本次版本属于二次迭代版本，后续若更新会以小版本形式发布，本次更新内容如下：
 ```shell
-1：Golang版本可能需要注意在1.18+，因为此程序没有进行打包，所以依赖Golang版本
-2：还是这个问题，因为此程序目前还在应用于手动传递文件到程序内，所以后期会更改为命令传递文件到程序，后期再需要Golang环境了
-3：目前的使用方法也非常的简单，我们只需要下载Golang1.18+的版本，然后进入程序目录执行go mod tidy，等待安装完成之后执行go run main.go 就OK了
-4：在执行之前我们需要注意的是可能需要替换我们的kubeconfig文件，替换的路径是kubecofnig/config文件
+1：本次版本为API程序添加了启动参数，具体参数可以使用-h列出，并且可以在启动API服务时指定参数，增加了更为灵活的自定义性
+2：本次更新参数如下所示：
+```
+
+```shell
+  -kubeconfig string                              
+        Set kubeconfig file (default "kubeconfig")
+  -listen string                                  
+        Set address (default "0.0.0.0:9090")      
+  -pass string                                    
+        Set password (default "123456")           
+  -podlogtaillines int                            
+        Set pod log tail lines (default 2000)     
+  -user string                                    
+        Set admin (default "admin")
 ```
